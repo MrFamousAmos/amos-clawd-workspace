@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Tracker Pro | Business & Contractor Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f9d;
+            --secondary: #d4860a;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light: #f5f5f5;
+            --text: #333;
+            --unpaid: #e74c3c;
+            --partial: #f39c12;
+            --paid: #27ae60;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, #0f3f6d 100%);
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h1 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .login-box p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0f3f6d;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #c97700;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-success:hover {
+            background: #229954;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            width: auto;
+        }
+
+        .main-app {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 2rem;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .business-selector, .role-selector {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .nav-btn.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-group button {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:hover {
+            background: var(--light);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .badge-pending {
+            background: #f39c12;
+            color: white;
+        }
+
+        .badge-assigned {
+            background: #3498db;
+            color: white;
+        }
+
+        .badge-in-progress {
+            background: #e67e22;
+            color: white;
+        }
+
+        .badge-completed {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Invoice Badges */
+        .badge-unpaid {
+            background: var(--unpaid);
+            color: white;
+        }
+
+        .badge-partial {
+            background: var(--partial);
+            color: white;
+        }
+
+        .badge-paid {
+            background: var(--paid);
+            color: white;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons button {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .invoice-form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header-right {
+                width: 100%;
+            }
+
+            .nav-buttons {
+                width: 100%;
+            }
+
+            .nav-buttons button {
+                flex: 1;
+                min-width: auto;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            table td, table th {
+                padding: 8px;
+            }
+
+            .invoice-form-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <h1>Lead Tracker Pro</h1>
+            <p>Business & Contractor Management</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Master Password</label>
+                    <input type="password" id="passwordInput" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p style="margin-top: 1.5rem; font-size: 0.8rem; color: #999; text-align: center;">
+                First time? Enter any password to set it up.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="main-app" id="mainApp">
+        <header>
+            <div class="container">
+                <h1>📊 Lead Tracker Pro</h1>
+                <div class="header-right">
+                    <select class="business-selector" id="businessSelect" onchange="switchBusiness()">
+                        <option value="">Select Business</option>
+                    </select>
+                    <select class="role-selector" id="roleSelect" onchange="switchRole()">
+                        <option value="owner">Owner View</option>
+                        <option value="contractor">Contractor View</option>
+                    </select>
+                    <div class="nav-buttons">
+                        <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+                        <button class="nav-btn" data-section="quotes">Quotes & Leads</button>
+                        <button class="nav-btn" data-section="assignments">Assignments</button>
+                        <button class="nav-btn" data-section="invoices">💰 Invoices</button>
+                        <button class="nav-btn" data-section="settings">Settings</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Dashboard -->
+            <section class="section active" id="dashboard">
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Total Leads</h3>
+                        <div class="number" id="totalLeads">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Quotes</h3>
+                        <div class="number" id="pendingQuotes">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Assigned Jobs</h3>
+                        <div class="number" id="assignedJobs">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Completed</h3>
+                        <div class="number" id="completedJobs">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Invoices</h3>
+                        <div class="number" id="totalInvoices">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Unpaid ($)</h3>
+                        <div class="number" id="unpaidTotal" style="color: var(--unpaid);">$0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Paid ($)</h3>
+                        <div class="number" id="paidTotal" style="color: var(--paid);">$0</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Recent Website Submissions</h2>
+                    <table id="recentQuotesTable">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h2>My Assigned Jobs (Contractors)</h2>
+                    <table id="myJobsTable">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h2>Recent Invoices</h2>
+                    <table id="recentInvoicesTable">
+                        <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Quotes & Leads -->
+            <section class="section" id="quotes">
+                <div class="card">
+                    <h2>Website Quotes & Submissions</h2>
+                    <button class="btn btn-secondary btn-small" onclick="syncWebsiteQuotes()">🔄 Sync from Website</button>
+                    <table id="quotesTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Assigned To</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Assignments -->
+            <section class="section" id="assignments">
+                <div class="card">
+                    <h2>Assign Jobs to Contractors</h2>
+                    <form id="assignmentForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Select Quote *</label>
+                                <select id="selectQuote" required onchange="loadQuoteDetails()">
+                                    <option value="">Choose quote...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Assign To Contractor *</label>
+                                <input type="text" id="contractorName" placeholder="Contractor name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Scheduled Date</label>
+                                <input type="date" id="scheduleDate">
+                            </div>
+                            <div class="form-group">
+                                <label>Notes for Contractor</label>
+                                <textarea id="assignmentNotes" placeholder="Special instructions..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Assign Job</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>Active Assignments</h2>
+                    <table id="assignmentsTable">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Contractor</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Invoices -->
+            <section class="section" id="invoices">
+                <div class="card">
+                    <h2>💰 Create New Invoice</h2>
+                    <form id="invoiceForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Auto-populate from Assignment (Optional)</label>
+                                <select id="selectAssignment" onchange="loadAssignmentForInvoice()">
+                                    <option value="">-- Choose assignment to auto-fill --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Contractor Name *</label>
+                                <input type="text" id="invoiceContractor" placeholder="Contractor name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Customer Name *</label>
+                                <input type="text" id="invoiceCustomer" placeholder="Customer name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Service Type *</label>
+                                <input type="text" id="invoiceService" placeholder="Service description" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Invoice Price ($) *</label>
+                                <input type="number" id="invoicePrice" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Due Date *</label>
+                                <input type="date" id="invoiceDueDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Status *</label>
+                                <select id="invoiceStatus" required>
+                                    <option value="">-- Select status --</option>
+                                    <option value="Unpaid">Unpaid</option>
+                                    <option value="Partial">Partial Payment</option>
+                                    <option value="Paid">Paid</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea id="invoiceNotes" placeholder="Additional notes..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Create Invoice</button>
+                            <button type="reset" class="btn" style="background: #95a5a6;">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>All Invoices</h2>
+                    <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="btn btn-secondary btn-small" onclick="exportInvoicesCSV()">📥 Export to CSV</button>
+                        <button class="btn btn-small" style="background: #95a5a6;" onclick="printInvoices()">🖨️ Print</button>
+                    </div>
+                    <table id="invoicesTable">
+                        <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Contractor</th>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Price ($)</th>
+                                <th>Status</th>
+                                <th>Due Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section class="section" id="settings">
+                <div class="card">
+                    <h2>Settings</h2>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">Change Password</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" id="newPassword" placeholder="Enter new password">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="changePassword()" style="margin-top: 1rem; max-width: 200px;">Update Password</button>
+                    </div>
+
+                    <div style="margin-bottom: 2rem; padding-top: 2rem; border-top: 2px solid #ddd;">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">Data Management</h3>
+                        <button class="btn btn-success btn-small" onclick="exportData()" style="margin-bottom: 1rem;">📥 Export All Data</button>
+                        <button class="btn btn-danger btn-small" onclick="if(confirm('Delete all data? This cannot be undone!')) { deleteAllData(); }">🗑️ Delete All Data</button>
+                    </div>
+
+                    <div style="padding-top: 2rem; border-top: 2px solid #ddd;">
+                        <button class="btn btn-danger" onclick="if(confirm('Log out?')) { logout(); }">Logout</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="color: var(--primary);">💡 Security</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        ✅ All data stored locally on your device<br>
+                        ✅ Password protected access<br>
+                        ✅ Export regularly as backup<br>
+                        ✅ No cloud servers, no external connections
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const PASSWORD_KEY = 'lead_tracker_password';
+        const QUOTES_KEY = 'lead_tracker_quotes';
+        const ASSIGNMENTS_KEY = 'lead_tracker_assignments';
+        const INVOICES_KEY = 'lead_tracker_invoices';
+        let currentBusiness = null;
+        let currentRole = 'owner';
+
+        // ===== LOGIN =====
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputPassword = document.getElementById('passwordInput').value;
+            const storedPassword = localStorage.getItem(PASSWORD_KEY);
+
+            if (!storedPassword) {
+                if (inputPassword.length < 4) {
+                    alert('Password must be at least 4 characters');
+                    return;
+                }
+                localStorage.setItem(PASSWORD_KEY, inputPassword);
+                loginSuccess();
+            } else if (inputPassword === storedPassword) {
+                loginSuccess();
+            } else {
+                alert('Incorrect password');
+                document.getElementById('passwordInput').value = '';
+            }
+        });
+
+        function loginSuccess() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            document.getElementById('passwordInput').value = '';
+            syncWebsiteQuotes();
+            loadAllData();
+            updateDashboard();
+        }
+
+        function logout() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('mainApp').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+        }
+
+        function changePassword() {
+            const newPassword = document.getElementById('newPassword').value;
+            if (!newPassword || newPassword.length < 4) {
+                alert('Password must be at least 4 characters');
+                return;
+            }
+            localStorage.setItem(PASSWORD_KEY, newPassword);
+            document.getElementById('newPassword').value = '';
+            alert('Password updated!');
+        }
+
+        // ===== SYNC WEBSITE QUOTES =====
+        function syncWebsiteQuotes() {
+            const websiteQuotes = JSON.parse(localStorage.getItem('sim_quotes') || '[]');
+            let quotes = JSON.parse(localStorage.getItem(QUOTES_KEY) || '[]');
+
+            websiteQuotes.forEach(wq => {
+                if (!quotes.find(q => q.id === wq.id)) {
+                    quotes.push({
+                        id: wq.id || Date.now(),
+                        name: wq.name,
+                        phone: wq.phone,
+                        email: wq.email,
+                        serviceType: wq.serviceType,
+                        description: wq.description,
+                        timestamp: wq.timestamp,
+                        status: 'Pending',
+                        assignedTo: null
+                    });
+                }
+            });
+
+            localStorage.setItem(QUOTES_KEY, JSON.stringify(quotes));
+            loadAllData();
+            updateDashboard();
+        }
+
+        // ===== DATA MANAGEMENT =====
+        function getQuotes() {
+            return JSON.parse(localStorage.getItem(QUOTES_KEY) || '[]');
+        }
+
+        function saveQuotes(quotes) {
+            localStorage.setItem(QUOTES_KEY, JSON.stringify(quotes));
+        }
+
+        function getAssignments() {
+            return JSON.parse(localStorage.getItem(ASSIGNMENTS_KEY) || '[]');
+        }
+
+        function saveAssignments(assignments) {
+            localStorage.setItem(ASSIGNMENTS_KEY, JSON.stringify(assignments));
+        }
+
+        function getInvoices() {
+            return JSON.parse(localStorage.getItem(INVOICES_KEY) || '[]');
+        }
+
+        function saveInvoices(invoices) {
+            localStorage.setItem(INVOICES_KEY, JSON.stringify(invoices));
+        }
+
+        // ===== INVOICE FORMS =====
+        document.getElementById('invoiceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const contractor = document.getElementById('invoiceContractor').value;
+            const customer = document.getElementById('invoiceCustomer').value;
+            const service = document.getElementById('invoiceService').value;
+            const price = parseFloat(document.getElementById('invoicePrice').value);
+            const dueDate = document.getElementById('invoiceDueDate').value;
+            const status = document.getElementById('invoiceStatus').value;
+            const notes = document.getElementById('invoiceNotes').value;
+
+            if (!contractor || !customer || !service || !price || !dueDate || !status) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            let invoices = getInvoices();
+            const invoiceId = 'INV-' + Date.now();
+
+            invoices.push({
+                id: invoiceId,
+                contractor: contractor,
+                customer: customer,
+                service: service,
+                price: price,
+                dueDate: dueDate,
+                status: status,
+                notes: notes,
+                createdDate: new Date().toISOString(),
+                lastModified: new Date().toISOString()
+            });
+
+            saveInvoices(invoices);
+            alert('Invoice ' + invoiceId + ' created successfully!');
+            document.getElementById('invoiceForm').reset();
+            loadAllData();
+            updateDashboard();
+        });
+
+        function loadAssignmentForInvoice() {
+            const assignmentId = document.getElementById('selectAssignment').value;
+            if (!assignmentId) {
+                document.getElementById('invoiceContractor').value = '';
+                document.getElementById('invoiceCustomer').value = '';
+                document.getElementById('invoiceService').value = '';
+                return;
+            }
+
+            const assignments = getAssignments();
+            const quotes = getQuotes();
+            const assignment = assignments.find(a => a.id === parseInt(assignmentId));
+
+            if (assignment) {
+                const quote = quotes.find(q => q.id === assignment.quoteId);
+                if (quote) {
+                    document.getElementById('invoiceContractor').value = assignment.contractor;
+                    document.getElementById('invoiceCustomer').value = quote.name;
+                    document.getElementById('invoiceService').value = quote.serviceType;
+                }
+            }
+        }
+
+        function updateInvoiceStatus(invoiceId, newStatus) {
+            let invoices = getInvoices();
+            invoices = invoices.map(inv => inv.id === invoiceId ? {...inv, status: newStatus, lastModified: new Date().toISOString()} : inv);
+            saveInvoices(invoices);
+            loadAllData();
+            updateDashboard();
+        }
+
+        function deleteInvoice(invoiceId) {
+            if (confirm('Delete this invoice? This action cannot be undone.')) {
+                let invoices = getInvoices();
+                invoices = invoices.filter(inv => inv.id !== invoiceId);
+                saveInvoices(invoices);
+                loadAllData();
+                updateDashboard();
+                alert('Invoice deleted');
+            }
+        }
+
+        // ===== FORMS =====
+        document.getElementById('assignmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const quoteId = parseInt(document.getElementById('selectQuote').value);
+            const contractor = document.getElementById('contractorName').value;
+            const scheduleDate = document.getElementById('scheduleDate').value;
+            const notes = document.getElementById('assignmentNotes').value;
+
+            if (!quoteId || !contractor) {
+                alert('Please select a quote and contractor');
+                return;
+            }
+
+            let quotes = getQuotes();
+            const quote = quotes.find(q => q.id === quoteId);
+            if (!quote) return;
+
+            quote.status = 'Assigned';
+            quote.assignedTo = contractor;
+
+            let assignments = getAssignments();
+            assignments.push({
+                id: Date.now(),
+                quoteId: quoteId,
+                contractor: contractor,
+                date: scheduleDate,
+                notes: notes,
+                status: 'Assigned'
+            });
+
+            saveQuotes(quotes);
+            saveAssignments(assignments);
+
+            alert('Job assigned to ' + contractor);
+            document.getElementById('assignmentForm').reset();
+            loadAllData();
+            updateDashboard();
+        });
+
+        function loadQuoteDetails() {
+            const quoteId = parseInt(document.getElementById('selectQuote').value);
+            if (!quoteId) return;
+
+            const quote = getQuotes().find(q => q.id === quoteId);
+            if (quote) {
+                document.getElementById('contractorName').value = quote.assignedTo || '';
+            }
+        }
+
+        function updateQuoteStatus(quoteId, newStatus) {
+            let quotes = getQuotes();
+            quotes = quotes.map(q => q.id === quoteId ? {...q, status: newStatus} : q);
+            saveQuotes(quotes);
+            loadAllData();
+            updateDashboard();
+        }
+
+        // ===== DISPLAY =====
+        function loadAllData() {
+            const quotes = getQuotes();
+            const assignments = getAssignments();
+            const invoices = getInvoices();
+
+            loadQuotesTable(quotes);
+            loadAssignmentsTable(assignments);
+            loadRecentQuotes(quotes);
+            loadMyJobs(quotes);
+            loadSelectDropdown(quotes);
+            loadInvoicesTable(invoices);
+            loadAssignmentDropdown(assignments, quotes);
+            loadRecentInvoices(invoices);
+        }
+
+        function loadQuotesTable(quotes) {
+            const tbody = document.querySelector('#quotesTable tbody');
+            tbody.innerHTML = '';
+
+            quotes.forEach(quote => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${quote.name}</td>
+                    <td>${quote.phone}</td>
+                    <td>${quote.email || '-'}</td>
+                    <td>${quote.serviceType}</td>
+                    <td><span class="badge badge-${quote.status.toLowerCase()}">${quote.status}</span></td>
+                    <td>${quote.assignedTo || '-'}</td>
+                    <td>${new Date(quote.timestamp).toLocaleDateString()}</td>
+                    <td class="action-buttons">
+                        <button class="btn btn-secondary btn-small" onclick="updateQuoteStatus(${quote.id}, 'Quoted')">Quoted</button>
+                        <button class="btn btn-danger btn-small" onclick="if(confirm('Delete?')) { let q = getQuotes(); q = q.filter(x => x.id !== ${quote.id}); saveQuotes(q); loadAllData(); }">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function loadAssignmentsTable(assignments) {
+            const tbody = document.querySelector('#assignmentsTable tbody');
+            tbody.innerHTML = '';
+
+            assignments.forEach(assignment => {
+                const quotes = getQuotes();
+                const quote = quotes.find(q => q.id === assignment.quoteId);
+                if (!quote) return;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${quote.name}</td>
+                    <td>${assignment.contractor}</td>
+                    <td>${quote.serviceType}</td>
+                    <td><span class="badge badge-${assignment.status.toLowerCase()}">${assignment.status}</span></td>
+                    <td>${assignment.date || '-'}</td>
+                    <td class="action-buttons">
+                        <button class="btn btn-success btn-small" onclick="updateAssignmentStatus(${assignment.id}, 'In Progress')">Started</button>
+                        <button class="btn btn-success btn-small" onclick="updateAssignmentStatus(${assignment.id}, 'Completed')">Done</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateAssignmentStatus(assignmentId, newStatus) {
+            let assignments = getAssignments();
+            assignments = assignments.map(a => a.id === assignmentId ? {...a, status: newStatus} : a);
+            saveAssignments(assignments);
+            loadAllData();
+            updateDashboard();
+        }
+
+        function loadRecentQuotes(quotes) {
+            const tbody = document.querySelector('#recentQuotesTable tbody');
+            tbody.innerHTML = '';
+
+            const recent = quotes.slice(-5).reverse();
+            recent.forEach(quote => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${quote.name}</td>
+                    <td>${quote.serviceType}</td>
+                    <td>${quote.phone}</td>
+                    <td><span class="badge badge-${quote.status.toLowerCase()}">${quote.status}</span></td>
+                    <td>${new Date(quote.timestamp).toLocaleDateString()}</td>
+                    <td><button class="btn btn-secondary btn-small" onclick="switchSection('assignments')">Assign</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function loadMyJobs(quotes) {
+            const tbody = document.querySelector('#myJobsTable tbody');
+            tbody.innerHTML = '';
+
+            const myJobs = quotes.filter(q => q.assignedTo);
+            myJobs.forEach(quote => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${quote.name}</td>
+                    <td>${quote.serviceType}</td>
+                    <td><span class="badge badge-${quote.status.toLowerCase()}">${quote.status}</span></td>
+                    <td class="action-buttons">
+                        <button class="btn btn-success btn-small" onclick="updateQuoteStatus(${quote.id}, 'In Progress')">Mark Started</button>
+                        <button class="btn btn-success btn-small" onclick="updateQuoteStatus(${quote.id}, 'Completed')">Mark Done</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function loadSelectDropdown(quotes) {
+            const select = document.getElementById('selectQuote');
+            select.innerHTML = '<option value="">Choose quote...</option>';
+
+            quotes.forEach(quote => {
+                if (quote.status !== 'Completed') {
+                    const option = document.createElement('option');
+                    option.value = quote.id;
+                    option.textContent = `${quote.name} - ${quote.serviceType}`;
+                    select.appendChild(option);
+                }
+            });
+        }
+
+        function loadAssignmentDropdown(assignments, quotes) {
+            const select = document.getElementById('selectAssignment');
+            select.innerHTML = '<option value="">-- Choose assignment to auto-fill --</option>';
+
+            assignments.forEach(assignment => {
+                const quote = quotes.find(q => q.id === assignment.quoteId);
+                if (quote && (assignment.status === 'Assigned' || assignment.status === 'In Progress')) {
+                    const option = document.createElement('option');
+                    option.value = assignment.id;
+                    option.textContent = `${quote.name} - ${assignment.contractor}`;
+                    select.appendChild(option);
+                }
+            });
+        }
+
+        function loadInvoicesTable(invoices) {
+            const tbody = document.querySelector('#invoicesTable tbody');
+            tbody.innerHTML = '';
+
+            invoices.forEach(invoice => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${invoice.id}</strong></td>
+                    <td>${invoice.contractor}</td>
+                    <td>${invoice.customer}</td>
+                    <td>${invoice.service}</td>
+                    <td>$${parseFloat(invoice.price).toFixed(2)}</td>
+                    <td><span class="badge badge-${invoice.status.toLowerCase()}">${invoice.status}</span></td>
+                    <td>${new Date(invoice.dueDate).toLocaleDateString()}</td>
+                    <td class="action-buttons">
+                        <button class="btn btn-success btn-small" onclick="updateInvoiceStatus('${invoice.id}', 'Partial')">Partial</button>
+                        <button class="btn btn-success btn-small" onclick="updateInvoiceStatus('${invoice.id}', 'Paid')">Mark Paid</button>
+                        <button class="btn btn-secondary btn-small" onclick="editInvoice('${invoice.id}')">Edit</button>
+                        <button class="btn btn-danger btn-small" onclick="deleteInvoice('${invoice.id}')">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function loadRecentInvoices(invoices) {
+            const tbody = document.querySelector('#recentInvoicesTable tbody');
+            tbody.innerHTML = '';
+
+            const recent = invoices.slice(-5).reverse();
+            recent.forEach(invoice => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${invoice.id}</strong></td>
+                    <td>${invoice.customer}</td>
+                    <td>$${parseFloat(invoice.price).toFixed(2)}</td>
+                    <td><span class="badge badge-${invoice.status.toLowerCase()}">${invoice.status}</span></td>
+                    <td>${new Date(invoice.dueDate).toLocaleDateString()}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function editInvoice(invoiceId) {
+            const invoices = getInvoices();
+            const invoice = invoices.find(inv => inv.id === invoiceId);
+            if (invoice) {
+                document.getElementById('invoiceContractor').value = invoice.contractor;
+                document.getElementById('invoiceCustomer').value = invoice.customer;
+                document.getElementById('invoiceService').value = invoice.service;
+                document.getElementById('invoicePrice').value = invoice.price;
+                document.getElementById('invoiceDueDate').value = invoice.dueDate;
+                document.getElementById('invoiceStatus').value = invoice.status;
+                document.getElementById('invoiceNotes').value = invoice.notes || '';
+                
+                // Delete old invoice
+                deleteInvoice(invoiceId);
+                
+                switchSection('invoices');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // ===== DASHBOARD =====
+        function updateDashboard() {
+            const quotes = getQuotes();
+            const assignments = getAssignments();
+            const invoices = getInvoices();
+
+            document.getElementById('totalLeads').textContent = quotes.length;
+            document.getElementById('pendingQuotes').textContent = quotes.filter(q => q.status === 'Pending').length;
+            document.getElementById('assignedJobs').textContent = assignments.filter(a => a.status === 'Assigned' || a.status === 'In Progress').length;
+            document.getElementById('completedJobs').textContent = quotes.filter(q => q.status === 'Completed').length;
+
+            // Invoice stats
+            document.getElementById('totalInvoices').textContent = invoices.length;
+
+            const unpaidInvoices = invoices.filter(inv => inv.status === 'Unpaid');
+            const unpaidTotal = unpaidInvoices.reduce((sum, inv) => sum + parseFloat(inv.price), 0);
+            document.getElementById('unpaidTotal').textContent = '$' + unpaidTotal.toFixed(2);
+
+            const paidInvoices = invoices.filter(inv => inv.status === 'Paid');
+            const paidTotal = paidInvoices.reduce((sum, inv) => sum + parseFloat(inv.price), 0);
+            document.getElementById('paidTotal').textContent = '$' + paidTotal.toFixed(2);
+        }
+
+        // ===== NAVIGATION =====
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                switchSection(this.dataset.section);
+            });
+        });
+
+        function switchSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function switchBusiness() {
+            // For future multi-business support
+        }
+
+        function switchRole() {
+            currentRole = document.getElementById('roleSelect').value;
+            loadAllData();
+        }
+
+        // ===== EXPORT =====
+        function exportInvoicesCSV() {
+            const invoices = getInvoices();
+
+            let csv = 'Invoice ID,Contractor,Customer,Service,Price,Status,Due Date,Created Date,Notes\n';
+            invoices.forEach(inv => {
+                csv += `"${inv.id}","${inv.contractor}","${inv.customer}","${inv.service}","${inv.price}","${inv.status}","${inv.dueDate}","${inv.createdDate}","${inv.notes || ''}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `invoices-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+        }
+
+        function printInvoices() {
+            const invoices = getInvoices();
+            let html = '<h2>Invoice Report - ' + new Date().toLocaleDateString() + '</h2>';
+            html += '<table border="1" style="width:100%; border-collapse: collapse;">';
+            html += '<tr><th>Invoice ID</th><th>Contractor</th><th>Customer</th><th>Service</th><th>Price</th><th>Status</th><th>Due Date</th></tr>';
+            
+            invoices.forEach(inv => {
+                html += `<tr>
+                    <td>${inv.id}</td>
+                    <td>${inv.contractor}</td>
+                    <td>${inv.customer}</td>
+                    <td>${inv.service}</td>
+                    <td>$${inv.price}</td>
+                    <td>${inv.status}</td>
+                    <td>${inv.dueDate}</td>
+                </tr>`;
+            });
+            
+            html += '</table>';
+
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write(html);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function exportData() {
+            const quotes = getQuotes();
+            const assignments = getAssignments();
+            const invoices = getInvoices();
+
+            let csv = 'QUOTES\n';
+            csv += 'Name,Phone,Email,Service,Status,AssignedTo,Date\n';
+            quotes.forEach(q => {
+                csv += `"${q.name}","${q.phone}","${q.email}","${q.serviceType}","${q.status}","${q.assignedTo || '-'}","${q.timestamp}"\n`;
+            });
+
+            csv += '\n\nASSIGNMENTS\n';
+            csv += 'Contractor,Customer,Service,Status,Date,Notes\n';
+            assignments.forEach(a => {
+                const quote = quotes.find(q => q.id === a.quoteId);
+                if (quote) {
+                    csv += `"${a.contractor}","${quote.name}","${quote.serviceType}","${a.status}","${a.date}","${a.notes || '-'}"\n`;
+                }
+            });
+
+            csv += '\n\nINVOICES\n';
+            csv += 'Invoice ID,Contractor,Customer,Service,Price,Status,Due Date,Created Date\n';
+            invoices.forEach(inv => {
+                csv += `"${inv.id}","${inv.contractor}","${inv.customer}","${inv.service}","${inv.price}","${inv.status}","${inv.dueDate}","${inv.createdDate}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `lead-tracker-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+        }
+
+        function deleteAllData() {
+            localStorage.removeItem(QUOTES_KEY);
+            localStorage.removeItem(ASSIGNMENTS_KEY);
+            localStorage.removeItem(INVOICES_KEY);
+            alert('All data deleted');
+            location.reload();
+        }
+
+        // ===== INIT =====
+        window.addEventListener('load', function() {
+            syncWebsiteQuotes();
+        });
+    </script>
+</body>
+</html>
