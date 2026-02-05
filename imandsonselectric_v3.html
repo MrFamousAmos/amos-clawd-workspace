@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sim & Sons Electric & Plumbing | DC, MD, VA | 24/7 Emergency Service</title>
+    <meta name="description" content="Professional electrical and plumbing services in DC, MD, VA. Licensed, insured, same-day service, 24/7 emergencies. Get your free quote today!">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f9d;
+            --primary-dark: #0f3f6d;
+            --accent: #d4860a;
+            --accent-light: #e6a839;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .logo-ornate {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--accent);
+            display: block;
+            font-size: 0.65rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .header-contact {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .header-phone a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .header-phone p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .cta-button-header {
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .cta-button-header:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 134, 10, 0.3);
+        }
+
+        /* ===== HERO WITH VIDEO ===== */
+        .hero {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 134, 10, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* ===== TRUST SECTION ===== */
+        .trust-section {
+            background: var(--light-bg);
+            padding: 50px 20px;
+        }
+
+        .trust-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .trust-item h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        .trust-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--accent);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(212, 134, 10, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .service-card a:hover {
+            color: var(--accent-light);
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery-section {
+            padding: 80px 20px;
+            background: var(--light-bg);
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 4 / 3;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--accent);
+            font-size: 3rem;
+        }
+
+        /* ===== WHY CHOOSE ===== */
+        .why-choose {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .why-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit {
+            padding: 2.5rem;
+            text-align: center;
+            background: var(--light-bg);
+            border-radius: 8px;
+            border-top: 3px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(212, 134, 10, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .benefit h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ===== CALENDLY SECTION ===== */
+        .booking-section {
+            padding: 80px 20px;
+            background: var(--light-bg);
+        }
+
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .booking-content {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .booking-content h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .booking-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .calendly-placeholder {
+            background: var(--light-bg);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-left h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-left p {
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .contact-info-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-info-block h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+        }
+
+        .contact-info-block a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .contact-info-block a:hover {
+            color: var(--accent);
+        }
+
+        .contact-info-block p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: white;
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(212, 134, 10, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 134, 10, 0.4);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(39, 174, 96, 0.2);
+            color: #27ae60;
+            border: 1px solid rgba(39, 174, 96, 0.5);
+            display: block;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            padding: 80px 20px;
+            background: var(--light-bg);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent);
+        }
+
+        .faq-question {
+            padding: 1.8rem;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            user-select: none;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 1.8rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            display: none;
+            background: var(--white);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 2px solid var(--accent);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.7rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p:first-child {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-contact {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons a, .hero-buttons button {
+                width: 100%;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo-section">
+                <svg class="logo-ornate" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="60" r="55" fill="none" stroke="#d4860a" stroke-width="1.5"/>
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="#d4860a" stroke-width="0.5"/>
+                    <path d="M 20 20 Q 25 15 30 20" fill="none" stroke="#d4860a" stroke-width="1.5"/>
+                    <path d="M 90 20 Q 95 15 100 20" fill="none" stroke="#d4860a" stroke-width="1.5"/>
+                    <path d="M 20 100 Q 25 105 30 100" fill="none" stroke="#d4860a" stroke-width="1.5"/>
+                    <path d="M 90 100 Q 95 105 100 100" fill="none" stroke="#d4860a" stroke-width="1.5"/>
+                    <path d="M 60 20 L 45 50 L 55 50 L 40 100 L 80 50 L 70 50 L 85 20 Z" fill="#d4860a"/>
+                    <path d="M 35 60 Q 30 60 28 65" fill="none" stroke="#d4860a" stroke-width="1" stroke-linecap="round"/>
+                    <path d="M 85 60 Q 90 60 92 65" fill="none" stroke="#d4860a" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+                <div class="logo-text">Sim & Sons<span>Electric & Plumbing</span></div>
+            </a>
+            <div class="header-contact">
+                <div class="header-phone">
+                    <a href="tel:202-281-8852">📞 (202) 281-8852</a>
+                    <p>24/7 Emergency</p>
+                </div>
+                <a href="#booking" class="cta-button-header">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero with Video Background -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://via.placeholder.com/1920x1080/1a5f9d/ffffff?text=Professional+Service" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Expert Electrical & Plumbing Services</h1>
+            <p>Fast, reliable, professional service for DC, Maryland & Virginia homes and businesses</p>
+            <div class="hero-badges">
+                <div class="badge">✓ Licensed & Insured</div>
+                <div class="badge">⚡ Same-Day Service</div>
+                <div class="badge">📞 24/7 Emergency</div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#booking" class="btn-primary">Book Now</a>
+                <a href="tel:202-281-8852" class="btn-secondary">Call (202) 281-8852</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-item">
+                <h3>100%</h3>
+                <p>Customer Satisfaction Guarantee</p>
+            </div>
+            <div class="trust-item">
+                <h3>20+ Years</h3>
+                <p>Local Experience & Expertise</p>
+            </div>
+            <div class="trust-item">
+                <h3>24/7</h3>
+                <p>Emergency Response Available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="services-container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Residential Electrical</h3>
+                    <p>Complete electrical solutions for your home. Panel upgrades, outlet installation, EV charging, smart home integration, and troubleshooting.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Commercial Electrical</h3>
+                    <p>Professional electrical services for businesses. System installation, upgrades, maintenance programs, and emergency repairs with minimal downtime.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Electrical Troubleshooting</h3>
+                    <p>Expert diagnostics for flickering lights, tripped breakers, power surges, and electrical problems. Fast identification and reliable solutions.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">✓</div>
+                    <h3>Electrical Maintenance</h3>
+                    <p>Preventative maintenance programs to keep your electrical system running safely. Regular inspections and updates for optimal performance.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3>Electrical Repairs</h3>
+                    <p>Quick and reliable repairs for all electrical issues. From outlets and switches to major appliance connections and wiring problems.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Electrical Installation</h3>
+                    <p>New installations done right. Lighting systems, appliances, circuits, generators, and custom electrical work for renovations and new construction.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>Lighting Control Systems</h3>
+                    <p>Smart lighting solutions for energy efficiency and convenience. Automated systems, dimming controls, and modern LED installations.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🚰</div>
+                    <h3>Plumbing Services</h3>
+                    <p>Complete plumbing solutions: repairs, installations, water heater service, drain cleaning, leak detection, and emergency plumbing.</p>
+                    <a href="#booking">Schedule Service →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <h2 class="section-title">Our Work</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem; font-size: 1.1rem;">See examples of our professional installations and completed projects</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500x400/1a5f9d/ffffff?text=Electrical+Panel" alt="Electrical Panel Installation">
+                    <div class="gallery-overlay"><span>📸</span></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500x400/d4860a/ffffff?text=Plumbing+Work" alt="Plumbing Installation">
+                    <div class="gallery-overlay"><span>📸</span></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500x400/27ae60/ffffff?text=Water+Heater" alt="Water Heater Installation">
+                    <div class="gallery-overlay"><span>📸</span></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500x400/1a5f9d/ffffff?text=Smart+Lighting" alt="Smart Lighting System">
+                    <div class="gallery-overlay"><span>📸</span></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500x400/d4860a/ffffff?text=Drain+Service" alt="Drain Cleaning Service">
+                    <div class="gallery-overlay"><span>📸</span></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500x400/27ae60/ffffff?text=Emergency+Service" alt="Emergency Repair Service">
+                    <div class="gallery-overlay"><span>📸</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <div class="why-container">
+            <h2 class="section-title">Why Choose Sim & Sons?</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">✓</div>
+                    <h3>Licensed & Insured</h3>
+                    <p>Fully licensed, bonded, and insured work you can trust completely.</p>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Fast Response</h3>
+                    <p>Same-day service when available. We arrive on time, every time.</p>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Fair Pricing</h3>
+                    <p>Transparent pricing with no hidden fees. Free quotes for all jobs.</p>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Local Expertise</h3>
+                    <p>Deep knowledge of DC, Maryland, and Virginia systems and codes.</p>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Quality Work</h3>
+                    <p>Code-compliant, professional work that lasts for years.</p>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">📞</div>
+                    <h3>24/7 Support</h3>
+                    <p>Always available when you need us, weekends and holidays included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="booking-container">
+            <div class="booking-content">
+                <h2>Book Your Service</h2>
+                <p>Schedule an appointment or emergency service. Our team is ready to help you.</p>
+                <div class="calendly-placeholder">
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">📅 Calendly Booking Calendar</h3>
+                        <p style="color: var(--text-light);">Embed your Calendly calendar here to allow customers to book appointments directly.</p>
+                        <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">Your Calendly widget will be embedded in this section</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-left">
+                <h2>Get In Touch</h2>
+                <p>Contact us today for a free quote on your electrical or plumbing project. Our team is ready to help you with any service needs.</p>
+                
+                <div class="contact-info-block">
+                    <h3>📞 Call Us</h3>
+                    <a href="tel:202-281-8852">(202) 281-8852</a>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Available 24/7 for emergencies</p>
+                </div>
+
+                <div class="contact-info-block">
+                    <h3>✉️ Email Us</h3>
+                    <a href="mailto:simandsons@simandsonselectric.site">simandsons@simandsonselectric.site</a>
+                </div>
+
+                <div class="contact-info-block">
+                    <h3>📍 Service Areas</h3>
+                    <p>Washington DC • Maryland • Northern Virginia</p>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Service Type *</label>
+                    <select id="serviceType" required>
+                        <option value="">Select a service...</option>
+                        <option value="Residential Electrical">Residential Electrical</option>
+                        <option value="Commercial Electrical">Commercial Electrical</option>
+                        <option value="Electrical Troubleshooting">Electrical Troubleshooting</option>
+                        <option value="Electrical Maintenance">Electrical Maintenance</option>
+                        <option value="Electrical Repairs">Electrical Repairs</option>
+                        <option value="Electrical Installation">Electrical Installation</option>
+                        <option value="Lighting Control">Lighting Control Systems</option>
+                        <option value="Plumbing Services">Plumbing Services</option>
+                        <option value="Emergency Service">Emergency Service</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Describe Your Issue *</label>
+                    <textarea id="description" required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Quote Request</button>
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer emergency plumbing and electrical services?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We provide 24/7 emergency services for burst pipes, electrical outages, and other urgent issues. Call (202) 281-8852 immediately to dispatch a technician to your location.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What areas do you service?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We serve Washington DC, Maryland, and Northern Virginia including all surrounding areas. Call us to confirm service availability for your specific location.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Are your technicians licensed and insured?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, all of our technicians are fully licensed, bonded, and insured. We guarantee professional, code-compliant work on every project.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How quickly can you respond to my issue?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer same-day service when available. For emergencies, we dispatch a technician as quickly as possible. Contact us immediately for the fastest response.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you provide free quotes?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We provide free estimates for all non-emergency work. Fill out our contact form or call us to schedule your free quote today.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sim & Sons Electric & Plumbing</h3>
+                    <p>Professional electrical and plumbing services throughout Washington DC, Maryland, and Virginia. Licensed, insured, and available 24/7.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#services">Electrical Services</a>
+                    <a href="#services">Plumbing Services</a>
+                    <a href="#services">Emergency Repair</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a href="tel:202-281-8852">📞 (202) 281-8852</a>
+                    <a href="mailto:simandsons@simandsonselectric.site">✉️ Email Us</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <p>24/7 Emergency Service</p>
+                    <p>Daily Appointments Available</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sim & Sons Electric & Plumbing. All rights reserved.</p>
+                <p>Licensed • Bonded • Insured | Serving DC, MD, and VA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                serviceType: document.getElementById('serviceType').value,
+                description: document.getElementById('description').value,
+                timestamp: new Date().toISOString(),
+                status: 'Pending'
+            };
+
+            let quotes = JSON.parse(localStorage.getItem('sim_quotes') || '[]');
+            formData.id = Date.now();
+            quotes.push(formData);
+            localStorage.setItem('sim_quotes', JSON.stringify(quotes));
+
+            const msg = document.getElementById('formMessage');
+            msg.className = 'form-message success';
+            msg.textContent = '✓ Thank you! We received your quote request. We\'ll contact you shortly.';
+
+            document.getElementById('contactForm').reset();
+
+            setTimeout(() => {
+                msg.style.display = 'none';
+            }, 5000);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
